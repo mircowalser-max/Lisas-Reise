@@ -1,65 +1,96 @@
 import streamlit as st
+import time
 
-# Grundkonfiguration
-st.set_page_config(page_title="Lisas Auszeit", page_icon="🏔️")
+# Seitenkonfiguration
+st.set_page_config(page_title="Lisas Mama-Auszeit", page_icon="🏔️")
 
-# Session State initialisieren
-if 'step' not in st.session_state:
-    st.session_state.step = 0
+# Styling für ein schönes Design
+st.markdown("""
+    <style>
+    .main {
+        background-color: #f0f2f6;
+    }
+    .stButton>button {
+        width: 100%;
+        border-radius: 5px;
+        height: 3em;
+        background-color: #ff4b4b;
+        color: white;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-# Titelbild (Direkt vom Hotel-Server)
-st.image("https://www.fruttmountainresort.com/fileadmin/_processed_/7/0/csm_FMR_Aussenansicht_Winter_3_f6b39d10c0.jpg")
+# Spielzustand initialisieren (damit die App sich merkt, bei welcher Quest Lisa ist)
+if 'quest' not in st.session_state:
+    st.session_state.quest = 0
 
-# --- SPIELLOGIK ---
+def nex_quest():
+    st.session_state.quest += 1
 
-if st.session_state.step == 0:
+# --- GAME LOGIC ---
+
+if st.session_state.quest == 0:
     st.title("🏔️ Mission: Mama-Auszeit")
-    st.write(f"Hallo Lisa! Seit 7 Monaten ist Elio dein Lebensmittelpunkt. Heute dreht sich alles um DICH.")
+    st.subheader("Hallo Lisa!")
+    st.write(f"Seit 7 Monaten dreht sich deine Welt um den kleinen Elio. Zwischen Windeln, Brei und kurzen Nächten hast du dir eine Pause verdient.")
+    st.write("Um dein Ziel zu erreichen, musst du 3 Rätsel lösen. Bist du bereit?")
     if st.button("Abenteuer starten"):
-        st.session_state.step = 1
-        st.rerun()
+        nex_quest()
 
-elif st.session_state.step == 1:
-    st.header("Level 1: Das Echo")
-    st.info("Ich antworte jedem, habe aber keinen Mund. Was bin ich?")
-    ans1 = st.text_input("Deine Antwort:").lower().strip()
-    if "echo" in ans1:
-        st.success("Richtig!")
-        if st.button("Weiter"):
-            st.session_state.step = 2
-            st.rerun()
-
-elif st.session_state.step == 2:
-    st.header("Level 2: Der Weg")
-    st.write("Folge der 'Frucht' im Namen:")
-    choice = st.radio("Wohin?", ["Engelberg", "Melchsee-Frutt", "Hasliberg"])
-    if st.button("Weg wählen"):
-        if "Frutt" in choice:
-            st.session_state.step = 3
-            st.rerun()
-        else:
-            st.error("Falscher Weg!")
-
-elif st.session_state.step == 3:
-    st.header("Level 3: Das Schloss")
-    st.info("Wenn du meinen Namen sagst, bin ich gebrochen. Was bin ich?")
-    ans3 = st.text_input("Lösung:").lower().strip()
-    if any(x in ans3 for x in ["stille", "ruhe"]):
-        st.success("GEWONNEN!")
-        if st.button("GUTSCHEIN ANZEIGEN"):
-            st.session_state.step = 4
-            st.rerun()
-
-elif st.session_state.step == 4:
-    st.balloons()
-    st.title("🎁 DEIN GESCHENK")
-    st.markdown("""
-    ### 1 Übernachtung im Frutt Mountain Resort
-    **Melchsee-Frutt, Schweiz**
+elif st.session_state.quest == 1:
+    st.header("Level 1: Die Talstation")
+    st.write("Das Tor zur Gondel ist verschlossen. Ein Rätsel erscheint:")
+    st.info("Ich habe keinen Mund, aber ich antworte jedem, der mich ruft. Ich habe keinen Körper, aber der Wind trägt mich. Was bin ich?")
     
-    Lisa, pack die Koffer! Wir gönnen dir eine Pause.
-    """)
-    if st.button("Neustart"):
-        st.session_state.step = 0
-        st.rerun()
+    answer = st.text_input("Deine Antwort:", key="q1").lower().strip()
+    if answer:
+        if "echo" in answer:
+            st.success("Richtig! Die Gondel setzt sich in Bewegung.")
+            if st.button("Weiter zum nächsten Level"):
+                nex_quest()
+        else:
+            st.error("Leider falsch. Ein kleiner Tipp: Man hört es in den Bergen.")
 
+elif st.session_state.quest == 2:
+    st.header("Level 2: Der Wegweiser")
+    st.write("Du bist oben angekommen. Wo geht es zum Resort?")
+    st.write("Hinweis: Folge der 'Frucht', die im Namen steckt.")
+    
+    choice = st.radio("Wähle einen Pfad:", ("Pfad zum Engelberg", "Pfad zur Melchsee-Frutt", "Pfad zum Hasliberg"))
+    
+    if st.button("Diesen Weg gehen"):
+        if "Frutt" in choice:
+            st.success("Genau! 'Frutt' klingt fast wie Fruit. Du bist auf dem richtigen Weg.")
+            nex_quest()
+        else:
+            st.warning("Hier wird es zu kalt. Das scheint nicht der richtige Weg zu sein.")
+
+elif st.session_state.quest == 3:
+    st.header("Level 3: Das Schloss zur Erholung")
+    st.write("Du stehst vor der Lobby. Das Schloss öffnet sich nur bei der richtigen Antwort:")
+    st.info("Ich bin das, was du dir wünschst, wenn Elio nachts weint. Sobald du meinen Namen sagst, bin ich gebrochen. Was bin ich?")
+    
+    answer_3 = st.text_input("Deine Antwort:", key="q3").lower().strip()
+    if answer_3:
+        if any(word in answer_3 for word in ["stille", "ruhe", "schweigen"]):
+            st.success("Das Schloss klickt leise. Willkommen in der Geborgenheit.")
+            if st.button("DEIN GESCHENK ÖFFNEN"):
+                nex_quest()
+        else:
+            st.error("Noch nicht ganz. Denk an das, was passiert, wenn Elio endlich tief schläft...")
+
+elif st.session_state.quest == 4:
+    st.balloons()
+    st.title("🎉 GESCHAFFT! 🎉")
+    st.header("Willkommen im Paradies, Lisa!")
+    
+    st.markdown("""
+    <div style="border: 5px solid #ff4b4b; padding: 20px; border-radius: 10px; background-color: white; text-align: center;">
+        <h2>GUTSCHEIN FÜR EINE AUSZEIT</h2>
+        <p style="font-size: 20px;"><b>Frutt Mountain Resort</b><br>Melchsee-Frutt, Schweiz</p>
+        <p>Pack die Koffer, Lisa! Elio ist gut versorgt.<br>Wellness & Erholung warten auf dich.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    if st.button("Spiel neustarten"):
+        st.session_state.quest = 0

@@ -7,16 +7,13 @@ st.set_page_config(page_title="Lisas Auszeit", page_icon="🏔️")
 if 'step' not in st.session_state:
     st.session_state.step = 0
 
-# Titelbild (Direkt vom Hotel-Server)
-st.image("https://www.fruttmountainresort.com/fileadmin/_processed_/7/0/csm_FMR_Aussenansicht_Winter_3_f6b39d10c0.jpg")
-
 # --- SPIELLOGIK ---
 
 if st.session_state.step == 0:
     st.title("🏔️ Mission: Mama-Auszeit")
     st.write(f"**Hallo Lisa,**
     
-    erinnerst du dich noch an das Gefühl von absoluter Ruhe? In den letzten 7 Monaten war dein Herz 
+    Erinnerst du dich noch an das Gefühl von absoluter Ruhe? In den letzten 7 Monaten war dein Herz 
     und dein Kopf pausenlos bei dem kleinen Elio. Du hast Windeln gewechselt, Lieder gesungen und 
     Wachposten an seinem Bett gehalten. Du bist eine wunderbare Mama.
     
@@ -106,6 +103,7 @@ elif st.session_state.step == 4:
     if st.button("Die Reise noch einmal erleben"):
         st.session_state.step = 0
         st.rerun()
+
 
 
 

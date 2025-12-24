@@ -101,8 +101,9 @@ elif st.session_state.step == 4:
     Lisa, du hast in den letzten Monaten Unglaubliches geleistet. Jetzt ist es Zeit, die Batterien 
     wieder aufzuladen. Genieße das Spa, das fantastische Essen und vor allem: **Die Stille.**
     
-    Elio wird in der Zwischenzeit bestens umsorgt sein.  
+    Elio wird in der Zwischenzeit bestens bei Noni umsorgt sein.  
     """)
     if st.button("Die Reise noch einmal erleben"):
         st.session_state.step = 0
         st.rerun()
+

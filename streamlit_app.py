@@ -14,7 +14,7 @@ st.image("https://www.fruttmountainresort.com/fileadmin/_processed_/7/0/csm_FMR_
 
 if st.session_state.step == 0:
     st.title("🏔️ Mission: Mama-Auszeit")
-    st.write(f"Hallo Lisa! Seit 7 Monaten ist Elio dein Lebensmittelpunkt. Heute dreht sich alles um DICH.")
+    st.write(f"Hallo Lisa, seit 7 Monaten dreht sich deine Welt um den kleinen Elio. Zwischen Windeln, Brei und kurzen Nächten hast du dir eine Pause verdient.")
     if st.button("Abenteuer starten"):
         st.session_state.step = 1
         st.rerun()
@@ -63,3 +63,4 @@ elif st.session_state.step == 4:
     if st.button("Neustart"):
         st.session_state.step = 0
         st.rerun()
+

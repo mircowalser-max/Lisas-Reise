@@ -15,12 +15,14 @@ st.image("https://www.fruttmountainresort.com/fileadmin/_processed_/7/0/csm_FMR_
 if st.session_state.step == 0:
     st.title("🏔️ Mission: Mama-Auszeit")
     st.write(f"Hallo Lisa, seit 7 Monaten dreht sich deine Welt um den kleinen Elio. Zwischen Windeln, Brei und kurzen Nächten hast du dir eine Pause verdient.")
+    st.write("Um dein Ziel zu erreichen, musst du 3 Rätsel lösen. Bist du bereit?")
     if st.button("Abenteuer starten"):
         st.session_state.step = 1
         st.rerun()
 
 elif st.session_state.step == 1:
-    st.header("Level 1: Das Echo")
+    st.header("Level 1: Die Talstation")
+    st.write("Das Tor zur Gondel ist verschlossen. Ein Rätsel erscheint:")
     st.info("Ich antworte jedem, habe aber keinen Mund. Was bin ich?")
     ans1 = st.text_input("Deine Antwort:").lower().strip()
     if "echo" in ans1:
@@ -30,7 +32,8 @@ elif st.session_state.step == 1:
             st.rerun()
 
 elif st.session_state.step == 2:
-    st.header("Level 2: Der Weg")
+    st.header("Level 2: Der Wegweiser")
+    st.write("Du bist oben angekommen. Wo geht es zum Resort?")
     st.write("Folge der 'Frucht' im Namen:")
     choice = st.radio("Wohin?", ["Engelberg", "Melchsee-Frutt", "Hasliberg"])
     if st.button("Weg wählen"):
@@ -41,7 +44,8 @@ elif st.session_state.step == 2:
             st.error("Falscher Weg!")
 
 elif st.session_state.step == 3:
-    st.header("Level 3: Das Schloss")
+    st.header("Level 3: Das Schloss zur Erholung")
+    st.write("Du stehst vor der Lobby. Das Schloss öffnet sich nur bei der richtigen Antwort:")
     st.info("Wenn du meinen Namen sagst, bin ich gebrochen. Was bin ich?")
     ans3 = st.text_input("Lösung:").lower().strip()
     if any(x in ans3 for x in ["stille", "ruhe"]):
@@ -52,15 +56,16 @@ elif st.session_state.step == 3:
 
 elif st.session_state.step == 4:
     st.balloons()
-    st.title("🎁 DEIN GESCHENK")
+    st.title("Geschafft!🎁 DEIN GESCHENK")
     st.markdown("""
     ### 1 Übernachtung im Frutt Mountain Resort
     **Melchsee-Frutt, Schweiz**
     
-    Lisa, am 25. Januar 26 ist es so weit, pack die Koffer! WGönn dir eine Pause.
+    Lisa, am 25. Januar 26 ist es so weit, pack die Koffer! Gönn dir eine Pause.
     Damit du voll entspannen kannst, ist Elio bei Noni gut versorgt. 
     """)
     if st.button("Neustart"):
         st.session_state.step = 0
         st.rerun()
+
 

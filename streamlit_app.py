@@ -10,10 +10,12 @@ if 'step' not in st.session_state:
 # --- SPIELLOGIK ---
 
 if st.session_state.step == 0:
-    st.title("🏔️ Mission: Mama-Auszeit")
-    st.write(f"**Hallo Lisa,**
+    st.title("🏔️ Eine Reise in die Stille")
+    st.image("https://www.fruttmountainresort.com/fileadmin/_processed_/7/0/csm_FMR_Aussenansicht_Winter_3_f6b39d10c0.jpg")
+    st.write("""
+    **Hallo Lisa,**
     
-    Erinnerst du dich noch an das Gefühl von absoluter Ruhe? In den letzten 7 Monaten war dein Herz 
+    erinnerst du dich noch an das Gefühl von absoluter Ruhe? In den letzten 7 Monaten war dein Herz 
     und dein Kopf pausenlos bei dem kleinen Elio. Du hast Windeln gewechselt, Lieder gesungen und 
     Wachposten an seinem Bett gehalten. Du bist eine wunderbare Mama.
     
@@ -21,8 +23,9 @@ if st.session_state.step == 0:
     am Fuße der Schweizer Alpen. Der Schnee knirscht unter deinen Stiefeln, und die Luft ist so frisch, 
     dass sie in der Nase prickelt. Dein Weg zur Erholung beginnt genau hier. 
     
-    Bist du bereit, dem Alltag für einen Moment zu entfliehen?")
-    if st.button("Abenteuer starten"):
+    Bist du bereit, dem Alltag für einen Moment zu entfliehen?
+    """)
+    if st.button("Das Abenteuer beginnen"):
         st.session_state.step = 1
         st.rerun()
 
@@ -98,12 +101,8 @@ elif st.session_state.step == 4:
     Lisa, du hast in den letzten Monaten Unglaubliches geleistet. Jetzt ist es Zeit, die Batterien 
     wieder aufzuladen. Genieße das Spa, das fantastische Essen und vor allem: **Die Stille.**
     
-    Elio wird in der Zwischenzeit bestens von Noni umsorgt sein.  
+    Elio wird in der Zwischenzeit bestens umsorgt sein.  
     """)
     if st.button("Die Reise noch einmal erleben"):
         st.session_state.step = 0
         st.rerun()
-
-
-
-

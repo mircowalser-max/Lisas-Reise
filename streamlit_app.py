@@ -85,7 +85,7 @@ elif st.session_state.quest == 4:
     st.header("Willkommen im Paradies, Lisa!")
     
     st.markdown("""
-    <div style="border: 5px solid #ff4b4b; padding: 20px; border-radius: 10px; background-color: white; text-align: center;">
+    <div style="border: 5px solid #ff4b4b; padding: 20px; border-radius: 10px; background-color: black; text-align: center;">
         <h2>GUTSCHEIN FÜR EINE AUSZEIT</h2>
         <p style="font-size: 20px;"><b>Frutt Mountain Resort</b><br>Melchsee-Frutt, Schweiz</p>
         <p>Pack die Koffer, Lisa! Elio ist gut versorgt.<br>Wellness & Erholung warten auf dich.</p>
@@ -94,3 +94,4 @@ elif st.session_state.quest == 4:
     
     if st.button("Spiel neustarten"):
         st.session_state.quest = 0
+

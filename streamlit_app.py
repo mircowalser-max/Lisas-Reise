@@ -79,19 +79,21 @@ elif st.session_state.quest == 3:
         else:
             st.error("Noch nicht ganz. Denk an das, was passiert, wenn Elio endlich tief schläft...")
 
-elif st.session_state.quest == 4:
+elif st.session_state.step == 4:
     st.balloons()
-    st.title("🎉 GESCHAFFT! 🎉")
-    st.header("Willkommen im Paradies, Lisa!")
+    st.title("🎁 DEIN GESCHENK")
+    # Hier ist dein neuer Bildlink:
+    st.image("https://storage.kempinski.com/cdn-cgi/image/w=1920,f=auto,fit=scale-down/ki-cms-prod/images/6/8/4/7/717486-1-eng-GB/1ec526639ef3-Exterior_winter_gallery.jpg", caption="Das wunderschöne Frutt Mountain Resort")
     
     st.markdown("""
-    <div style="border: 5px solid #ff4b4b; padding: 20px; border-radius: 10px; background-color: black; text-align: center;">
-        <h2>GUTSCHEIN FÜR EINE AUSZEIT</h2>
-        <p style="font-size: 20px;"><b>Frutt Mountain Resort</b><br>Melchsee-Frutt, Schweiz</p>
-        <p>Pack die Koffer, Lisa! Elio ist gut versorgt.<br>Wellness & Erholung warten auf dich.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    ### 1 Übernachtung im Frutt Mountain Resort
+    **Melchsee-Frutt, Schweiz**
+    
+    Lisa, am 25. Januar 26 ist es so weit, pack die Koffer! Gönn dir eine Pause.
+    Elio ist bei Noni in den besten Händen, damit du richtig entspannen kannst.
+    """)
     
     if st.button("Spiel neustarten"):
         st.session_state.quest = 0
+
 

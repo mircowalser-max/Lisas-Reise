@@ -82,9 +82,6 @@ elif st.session_state.quest == 3:
 elif st.session_state.step == 4:
     st.balloons()
     st.title("🎁 DEIN GESCHENK")
-    # Hier ist dein neuer Bildlink:
-    st.image("https://storage.kempinski.com/cdn-cgi/image/w=1920,f=auto,fit=scale-down/ki-cms-prod/images/6/8/4/7/717486-1-eng-GB/1ec526639ef3-Exterior_winter_gallery.jpg", caption="Das wunderschöne Frutt Mountain Resort")
-    
     st.markdown("""
     ### 1 Übernachtung im Frutt Mountain Resort
     **Melchsee-Frutt, Schweiz**
@@ -95,5 +92,6 @@ elif st.session_state.step == 4:
     
     if st.button("Spiel neustarten"):
         st.session_state.quest = 0
+
 
 
